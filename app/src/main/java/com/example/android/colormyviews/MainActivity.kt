@@ -4,17 +4,35 @@ import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.TextView
 
 class MainActivity : AppCompatActivity() {
+
+    private lateinit  var boxOneText: View
+    private lateinit  var boxTwoText: View
+    private lateinit  var boThreeText: View
+    private lateinit  var boxFourText: View
+    private lateinit  var boxFiveText: View
+    private lateinit  var constraintLayout: View
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        boxOneText = findViewById<TextView>(R.id.box_one_text)
+        boxTwoText = findViewById<TextView>(R.id.box_two_text)
+        boThreeText = findViewById<TextView>(R.id.box_three_text)
+        boxFourText = findViewById<TextView>(R.id.box_four_text)
+        boxFiveText = findViewById<TextView>(R.id.box_five_text)
+        constraintLayout = findViewById<TextView>(R.id.constraint_layout)
+
         setListeners()
     }
 
     private fun setListeners() {
         val clickableViews: List<View> =
-            listOf(box_one_text, box_two_text, box_three_text, box_four_text, box_five_text)
+            listOf(boxOneText, boxTwoText, boThreeText,
+                boxFourText, boxFiveText, constraintLayout)
 
         for (item in clickableViews) {
             item.setOnClickListener { makeColored(it) }
