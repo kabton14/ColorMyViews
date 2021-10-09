@@ -5,36 +5,27 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.TextView
+import androidx.databinding.DataBindingUtil
+import com.example.android.colormyviews.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit  var boxOneText: View
-    private lateinit  var boxTwoText: View
-    private lateinit  var boThreeText: View
-    private lateinit  var boxFourText: View
-    private lateinit  var boxFiveText: View
-    private lateinit  var constraintLayout: View
+    private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-
-        boxOneText = findViewById<TextView>(R.id.box_one_text)
-        boxTwoText = findViewById<TextView>(R.id.box_two_text)
-        boThreeText = findViewById<TextView>(R.id.box_three_text)
-        boxFourText = findViewById<TextView>(R.id.box_four_text)
-        boxFiveText = findViewById<TextView>(R.id.box_five_text)
-        constraintLayout = findViewById<TextView>(R.id.constraint_layout)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
         setListeners()
     }
 
     private fun setListeners() {
         val clickableViews: List<View> =
-            listOf(boxOneText, boxTwoText, boThreeText,
-                boxFourText, boxFiveText, constraintLayout)
+            listOf(binding.boxOneText, binding.boxTwoText, binding.boxThreeText,
+                binding.boxFourText, binding.boxFiveText, binding.constraintLayout)
 
-        for (item in clickableViews) {
+
+                for (item in clickableViews) {
             item.setOnClickListener { makeColored(it) }
         }
     }
@@ -51,8 +42,6 @@ class MainActivity : AppCompatActivity() {
             R.id.box_five_text -> view.setBackgroundResource(android.R.color.holo_green_light)
 
             else -> view.setBackgroundColor(Color.LTGRAY)
-
-
         }
     }
 }
